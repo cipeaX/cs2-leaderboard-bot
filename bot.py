@@ -76,7 +76,7 @@ async def on_ready():
 @bot.tree.command(name="register", description="Register to the CS Rating Bot")
 async def register(interaction: discord.Interaction):
     logger.info("Opening modal")
-    reg_modal = modal.registerModal()
+    reg_modal = utils.modal.registerModal()
     reg_modal.user = interaction.user
     log_channel = interaction.guild.get_channel(config.log_channel_id)
     log = f"{interaction.user.global_name} just used /register and opened the form"
@@ -88,6 +88,10 @@ async def register(interaction: discord.Interaction):
 async def updateLoop():
     logger.debug("Updating from loop")
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="/register"))
+
+    users_cache = {}
+    with open("data/users.json", "r") as f:
+        users_cache = json.load(f)
         
     channel = bot.get_channel(config.leaderboard_channel_id)
     
