@@ -107,7 +107,7 @@ async def updateLoop():
         loop = asyncio.get_running_loop()
         ratings = await loop.run_in_executor(None, ratings_helper, id64s) 
     except Exception as e:
-        await log_channel.send("Error in updateLoop:" + e)
+        await log_channel.send("Error in updateLoop:" + str(e))
         logger.error("Error in updateLoop")
         return
     

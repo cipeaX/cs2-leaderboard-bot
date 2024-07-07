@@ -5,7 +5,7 @@ from utils.utils import id3toid64
 logger = logging.getLogger("csbot")
 
 users_cache = {}
-with open("users.json", "r") as f:
+with open("data/users.json", "r") as f:
         users_cache = json.load(f)
 
 class registerModal(discord.ui.Modal, title="CS2 Rating Leaderboard Registration"):

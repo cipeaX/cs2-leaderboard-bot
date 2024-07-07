@@ -9,7 +9,10 @@ async def get_ratings_from_id64s_async(list):
         tasks = (client.get(url=f"https://api.leetify.com/api/profile/{id64}", timeout=30) for id64 in list)
         reqs = await asyncio.gather(*tasks, return_exceptions=True)
 
-    errors = [(req.status_code,req.url) for req in reqs if req.status_code != 200]
+    try:
+        errors = [(req.status_code,req.url) for req in reqs if req.status_code != 200]
+    except AttributeError:
+        raise Exception("Leetify Request Timeout")
     if errors:
           raise Exception(f"Leetify Status: {errors}")
 
