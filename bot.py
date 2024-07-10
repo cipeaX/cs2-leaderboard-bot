@@ -154,7 +154,13 @@ async def updateLoop():
         await channel.send(embed=embed)
         logger.info("Created new message")
 
-    await checkRoles(users_plus)
+    try:
+        await checkRoles(users_plus)
+    except Exception as e:
+        await log_channel.send("Error in checkRoles:" + str(e))
+        logger.error("Error in checkRoles")
+
+    
     return
 
 async def checkRoles(users_plus):
