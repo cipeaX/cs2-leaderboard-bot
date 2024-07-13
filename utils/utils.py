@@ -26,7 +26,9 @@ async def get_ratings_from_id64s_async(list):
         for game in [g for g in res["games"] if g["isCs2"]][:25]:
 
             #check if premier match
-            if(game["skillLevel"]):
+            if("skillLevel" in game.keys()):
+                if not game["skillLevel"]:
+                    continue
                 if(game["skillLevel"] < 1000): # skillLevel < 1000 -> normal matchmaking
                     continue
 
@@ -73,6 +75,7 @@ def id3toid64(id3):
 
 
 if __name__ == "__main__":
+    print(asyncio.run(get_ratings_from_id64s_async(["76561198204733729"])))
     pass
 
 
