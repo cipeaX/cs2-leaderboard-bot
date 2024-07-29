@@ -99,7 +99,7 @@ async def updateLoop():
 
     users_plus = copy.deepcopy(users_cache)
     for user in users_plus.keys():
-        users_plus[user]["member"] = await cs2guild.fetch_member(users_plus[user]["id"])
+        users_plus[user]["member"] = await cs2guild.fetch_member(users_plus[user]["discord_id"])
 
     id64s = [users_plus[key]["id64"] for key in users_plus.keys()]
 
