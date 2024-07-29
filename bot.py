@@ -79,7 +79,7 @@ async def register(interaction: discord.Interaction):
     reg_modal = utils.modal.registerModal()
     reg_modal.user = interaction.user
     log_channel = interaction.guild.get_channel(config.log_channel_id)
-    log = f"{interaction.user.global_name} just used /register and opened the form"
+    log = f"{interaction.user.mention} just used /register and opened the form"
     await log_channel.send(log)
     await interaction.response.send_modal(reg_modal)
 
