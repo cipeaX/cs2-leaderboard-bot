@@ -20,7 +20,7 @@ class registerModal(discord.ui.Modal, title="CS2 Rating Leaderboard Registration
     async def on_submit(self, interaction: discord.Interaction):
         logger.info("Submitting modal")
 
-        name = str(self.user.name)
+        name = str(self.user.display_name) if str(self.user.display_name) else str(self.user.name)
 
         log_channel = interaction.guild.get_channel(config.log_channel_id)
         log = f"{name} just submitted the form (Input: \"{str(self.friendcode)}\")"
