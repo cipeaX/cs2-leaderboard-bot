@@ -132,7 +132,7 @@ async def updateLoop():
             rating_index = int(rating_int/5000)+1
             emoji = emojis[rating_index]
         if rating[0] == "0":
-            rating[0] = " "
+            rating = f" {rating[1:]}"
 
         desc_string += f"{emoji}`{user_entry['name']:25}{rating} `  **[👤+](https://steamcommunity.com/profiles/{user_entry['id64']})**\n\n"
         
