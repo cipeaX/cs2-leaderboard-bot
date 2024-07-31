@@ -55,7 +55,7 @@ class registerModal(discord.ui.Modal, title="CS2 Rating Leaderboard Registration
 
         users_cache[str(name)] = {"name":str(name),"discord_id":str(self.user.id),"friendcode":str(self.friendcode), "id64":str(id64)}
 
-        log = f"{self.user.mention} just registered! (Discord ID: {users_cache[name]['id64']}, Friendcode: {users_cache[name]['friendcode']} interpreted as ID64: {users_cache[name]['id64']})"
+        log = f"{self.user.mention} just registered! (Discord ID: {users_cache[name]['discord_id']}, Friendcode: {users_cache[name]['friendcode']} interpreted as ID64: {users_cache[name]['id64']})"
         logger.info(log)
         await log_channel.send(log)
 
