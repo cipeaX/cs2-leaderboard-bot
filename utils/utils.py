@@ -10,18 +10,24 @@ async def get_ratings_from_id64s_async(list):
         reqs = await asyncio.gather(*tasks, return_exceptions=True)
 
     try:
-        errors = [(req.status_code,req.url) for req in reqs if req.status_code != 200]
+        errors = [(req.status_code,req.url) for req in reqs if req.status_code != 200 and req.status_code != 404]
     except AttributeError:
         raise Exception("Leetify Request Timeout")
     if errors:
           raise Exception(f"Leetify Status: {errors}")
 
-    ress = [json.loads(req.text) for req in reqs]
+    ress = [json.loads(req.text) if req.status_code != 404 else "404" for req in reqs]
 
 
     for i, id64 in enumerate(list):
 
         res = ress[i]
+
+        if res == "404":
+            logger.debug(f"No Leetify profile found for {id64}")
+            list[i], done = "--,---", True
+            break
+
         done = False
         for game in [g for g in res["games"] if g["isCs2"]][:25]:
 
