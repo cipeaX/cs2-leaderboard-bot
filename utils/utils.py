@@ -26,7 +26,7 @@ async def get_ratings_from_id64s_async(list):
         if res == "404":
             logger.debug(f"No Leetify profile found for {id64}")
             list[i], done = "--,---", True
-            break
+            continue
 
         done = False
         for game in [g for g in res["games"] if g["isCs2"]][:25]:
@@ -81,7 +81,7 @@ def id3toid64(id3):
 
 
 if __name__ == "__main__":
-    print(asyncio.run(get_ratings_from_id64s_async(["76561198204733729"])))
+    print(asyncio.run(get_ratings_from_id64s_async(["76561198452307264"])))
     pass
 
 

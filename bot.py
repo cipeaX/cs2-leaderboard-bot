@@ -75,10 +75,19 @@ async def on_ready():
 
 @bot.tree.command(name="register", description="Register to the CS Rating Bot")
 async def register(interaction: discord.Interaction):
+
+    log_channel = interaction.guild.get_channel(config.log_channel_id)
+
     logger.info("Opening modal")
+    if str(interaction.user.global_name) in users_cache.keys():
+            logger.info("Already registered")
+            log = f"{interaction.user.mention} got response \"You are already registered.\""
+            await log_channel.send(log)
+            await interaction.response.send_message("You are already registered.", ephemeral=True)
+            return
+
     reg_modal = utils.modal.registerModal()
     reg_modal.user = interaction.user
-    log_channel = interaction.guild.get_channel(config.log_channel_id)
     log = f"{interaction.user.mention} just used /register and opened the form"
     await log_channel.send(log)
     await interaction.response.send_modal(reg_modal)
@@ -110,7 +119,6 @@ async def updateLoop():
         await log_channel.send("Error in updateLoop:" + str(e))
         logger.error("Error in updateLoop")
         return
-    
     
     for i, key in enumerate(users_plus):
         users_plus[key]["rating"] = ratings[i]
