@@ -2,7 +2,7 @@
 
 Discord Bot for displaying a self-updating Leaderboard for CS2 Premier Ratings in small Communities and managing rating-based Roles for Members.
 
-# Setup:
+## Setup:
 
 - Clone repository
 - `pip install -r requirements.txt`
@@ -11,8 +11,8 @@ Discord Bot for displaying a self-updating Leaderboard for CS2 Premier Ratings i
 - Fill out config.py (Bot Token, GuildID, ChannelIDs, EmojiIDs)
 - `python bot.py` to run the Bot
 
-# Other Info:
+## Other Info:
 
 - Members will have to register themselves with /register and their Steam Friendcode to appear on the Leaderboard and get the Roles.
 - When a new season reset comes around, change the timestamp in config.py.
-- The data is collected from Leetify, so Members are required to have an account to see their rating.
+- The data is collected from [Leetify](https://leetify.com/app), so Members are required to have an account to see their rating.
