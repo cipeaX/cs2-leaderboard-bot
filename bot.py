@@ -107,8 +107,13 @@ async def updateLoop():
     embed = discord.Embed(title="CS2 Leaderboard")
 
     users_plus = copy.deepcopy(users_cache)
-    for user in users_plus.keys():
-        users_plus[user]["member"] = await cs2guild.fetch_member(users_plus[user]["discord_id"])
+    try:
+        for user in users_plus.keys():
+            users_plus[user]["member"] = await cs2guild.fetch_member(users_plus[user]["discord_id"])
+    except Exception as e:
+        #await log_channel.send("Error in updateLoop: " + str(e))
+        logger.error("Error in updateLoop: " + str(e))
+        return
 
     id64s = [users_plus[key]["id64"] for key in users_plus.keys()]
 
@@ -116,8 +121,8 @@ async def updateLoop():
         loop = asyncio.get_running_loop()
         ratings = await loop.run_in_executor(None, ratings_helper, id64s) 
     except Exception as e:
-        await log_channel.send("Error in updateLoop:" + str(e))
-        logger.error("Error in updateLoop")
+        #await log_channel.send("Error in updateLoop: " + str(e))
+        logger.error("Error in updateLoop: " + str(e))
         return
     
     for i, key in enumerate(users_plus):
