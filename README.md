@@ -11,6 +11,10 @@ Discord Bot for displaying a self-updating Leaderboard for CS2 Premier Ratings i
 - Fill out config.py (Bot Token, GuildID, ChannelIDs, EmojiIDs)
 - `python bot.py` to run the Bot
 
+## Leaderboard Preview:
+
+![t](https://ibb.co/hsKx2bD)
+
 ## Other Info:
 
 - Members will have to register themselves with /register and their Steam Friendcode to appear on the Leaderboard and get the Roles.
