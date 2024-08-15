@@ -13,7 +13,7 @@ Discord Bot for displaying a self-updating Leaderboard for CS2 Premier Ratings i
 
 ## Leaderboard Preview:
 
-![t](https://i.ibb.co/jhL93mg/image.png)
+<img src="https://i.ibb.co/jhL93mg/image.png" width="250" height="400">
 
 ## Other Info:
 
